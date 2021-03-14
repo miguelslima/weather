@@ -10,12 +10,12 @@ export default function Header({ background, weather, icon }) {
     <>
       <Text style={styles.city}> {weather.results.city}</Text>
       <LinearGradient style={styles.header} colors={background}>
-        <Ionicons name={icon.name} color={icon.color} size={150} />
+        <Ionicons name={icon.name} color={icon.color} size={120} />
         <Text style={styles.description}>{weather.results.description}</Text>
         <Text style={styles.date}> {weather.results.date}</Text>
         <Text style={styles.temp}>{weather.results.temp}°</Text>
 
-        <Conditions weather={weather} />
+        <Conditions background={background} weather={weather} />
       </LinearGradient>
     </>
   );
@@ -24,11 +24,11 @@ export default function Header({ background, weather, icon }) {
 const styles = StyleSheet.create({
   header: {
     width: "90%",
-    height: "55%",
+    height: "59%",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    marginBottom: 40,
   },
   description: {
     color: "#fff",
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     color: "#0f0f0f",
     fontSize: 20,
     fontWeight: "bold",
+    marginTop: 20,
+    marginBottom: 20,
   },
   temp: {
     color: "#fff",
