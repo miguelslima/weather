@@ -24,7 +24,6 @@ export default function Header({ background, weather, icon }) {
 const styles = StyleSheet.create({
   header: {
     width: "90%",
-    height: "59%",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -49,5 +48,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 80,
     fontWeight: "bold",
+    marginBottom: 5,
   },
 });

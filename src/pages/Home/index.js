@@ -73,6 +73,7 @@ export default function Home() {
 
       <FlatList
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: "5%" }}
         style={styles.list}
         data={weather.results.forecast}

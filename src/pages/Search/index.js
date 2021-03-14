@@ -62,8 +62,8 @@ export default function Search() {
         </View>
 
         <LinearGradient style={styles.header} colors={["#1ed6ff", "#97c1ff"]}>
+          <Text style={styles.city}>{city.results.city}</Text>
           <Text style={styles.date}>{city.results.date}</Text>
-          <Text style={styles.city}>{city.results.city_name}</Text>
           <View>
             <Text style={styles.temp}>{city.results.temp}°</Text>
           </View>
@@ -142,20 +142,20 @@ const styles = StyleSheet.create({
   header: {
     marginTop: "5%",
     width: "90%",
+    height: "65%",
     paddingTop: "5%",
-    paddingBottom: "5%",
     alignItems: "center",
     justifyContent: "space-between",
     borderRadius: 10,
   },
-  date: {
-    color: "#fff",
-    fontSize: 16,
-  },
   city: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#fff",
+  },
+  date: {
+    color: "#fff",
+    fontSize: 20,
   },
   temp: {
     color: "#fff",
