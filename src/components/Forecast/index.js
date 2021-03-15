@@ -4,39 +4,21 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { condition } from "../../utils/condition";
 
+import { Container, Date, Temp, TempMax } from "./styles";
+
 export default function Forecast({ data }) {
   let icon = condition(data.condition);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.date}>{data.date}</Text>
+    <Container>
+      <Date>{data.date}</Date>
 
       <Ionicons name={icon.name} color={icon.color} size={25} />
 
-      <View style={styles.temp}>
+      <Temp>
         <Text>{data.min}°</Text>
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>{data.max}°</Text>
-      </View>
-    </View>
+        <TempMax>{data.max}°</TempMax>
+      </Temp>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    marginLeft: 12,
-    borderRadius: 8,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  date: {
-    fontSize: 15,
-  },
-  temp: {
-    alignItems: "center",
-  },
-});
