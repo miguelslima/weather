@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingTop: 10,
     paddingBottom: 10,
-    paddingLeft: 14,
-    paddingRight: 14,
+    paddingLeft: 10,
+    paddingRight: 10,
     justifyContent: "space-around",
     alignItems: "center",
   },
   date: {
-    fontSize: 14,
+    fontSize: 15,
   },
   temp: {
     alignItems: "center",

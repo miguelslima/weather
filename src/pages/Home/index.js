@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import Menu from "../../components/Menu";
 
 import api, { key } from "../../services/api";
+import Loading from "../../components/Loading";
 
 export default function Home() {
   const [errorMessage, setErroMessage] = useState(null);
@@ -29,7 +30,7 @@ export default function Home() {
       let location = await Location.getCurrentPositionAsync({});
 
       const response = await api.get(
-        `/weather?key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+        `/weather?array_limit=5&key=${key}&fields=temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
       );
 
       setWeather(response.data);
@@ -57,9 +58,7 @@ export default function Home() {
   if (loading) {
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 17, fontStyle: "italic" }}>
-          Carregandos dados da api
-        </Text>
+        <Loading />
       </View>
     );
   }
@@ -69,7 +68,7 @@ export default function Home() {
       <Menu />
       <Header background={background} weather={weather} icon={icon} />
 
-      {/* <Conditions weather={weather} /> */}
+      <Text style={{marginVertical: 10, fontSize: 18}}>Veja previsão para os próximos 10 dias</Text>
 
       <FlatList
         horizontal={true}
@@ -94,6 +93,6 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop: 10,
-    marginLeft: 10,
+    marginRight: 10,
   },
 });
