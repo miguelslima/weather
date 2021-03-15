@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import {
