@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import * as Location from "expo-location";
 
 import Forecast from "../../components/Forecast";
-import Header from "../../components/Header";
-import Menu from "../../components/Menu";
+import { Feather } from "@expo/vector-icons";
 
 import api, { key } from "../../services/api";
 import Loading from "../../components/Loading";
-
-import { Container, List } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Home() {
+import { Container, List, BackButton } from "./styles";
+
+export default function NextDay() {
   const navigation = useNavigation();
 
   const [errorMessage, setErroMessage] = useState(null);
@@ -34,7 +33,7 @@ export default function Home() {
       let location = await Location.getCurrentPositionAsync({});
 
       const response = await api.get(
-        `/weather?array_limit=5&key=${key}&fields=temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+        `/weather?&key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
       );
 
       setWeather(response.data);
@@ -69,23 +68,20 @@ export default function Home() {
 
   return (
     <Container>
-      <Menu />
-      <Header background={background} weather={weather} icon={icon} />
+      <BackButton onPress={() => navigation.navigate("Home")}>
+        <Feather name="chevron-left" size={32} color="#000" />
+        <Text style={{ fontSize: 22 }}>Voltar</Text>
+      </BackButton>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("NextDay")}
-        style={{ marginVertical: 10, fontSize: 18 }}
-      >
-        <Text>Veja previsão para os próximos 10 dias</Text>
-      </TouchableOpacity>
+      <Text style={{ textAlign: "center", marginTop: 20, fontSize: 18 }}>
+        Veja previsão para os próximos 10 dias {weather.results.city}
+      </Text>
 
       <List
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: "5%" }}
+        showsVerticalScrollIndicator={false}
         data={weather.results.forecast}
         keyExtractor={(item) => item.date}
-        renderItem={({ item }) => <Forecast data={item} />}
+        renderItem={({ item }) => <Forecast vertical data={item} />}
       />
     </Container>
   );

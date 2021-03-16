@@ -4,21 +4,21 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { condition } from "../../utils/condition";
 
-import { Container, Date, Temp, TempMax } from "./styles";
+import { Container, Date, Temp, TempMax, Weekday } from "./styles";
 
-export default function Forecast({ data }) {
+export default function Forecast({ data, vertical }) {
   let icon = condition(data.condition);
-
   return (
-    <Container>
-      <Date>{data.date}</Date>
+    <Container vertical={vertical}>
+      <Weekday vertical={vertical}>{data.weekday}</Weekday>
 
       <Ionicons name={icon.name} color={icon.color} size={25} />
 
-      <Temp>
+      <Temp vertical={vertical}>
         <Text>{data.min}°</Text>
-        <TempMax>{data.max}°</TempMax>
+        <TempMax vertical={vertical}>{data.max}°</TempMax>
       </Temp>
+      <Date vertical={vertical}>{data.date}</Date>
     </Container>
   );
 }
