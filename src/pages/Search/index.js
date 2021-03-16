@@ -2,18 +2,27 @@ import React, { useState } from "react";
 import {
   Text,
   View,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-  TextInput,
   Keyboard,
+  TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
 import Conditions from "../../components/Conditions";
 
 import api, { key } from "../../services/api";
+
+import {
+  Container,
+  BackButton,
+  SearchBox,
+  InputText,
+  IconText,
+  Header,
+  City,
+  Date,
+  Temp,
+} from "./styles";
 
 export default function Search() {
   const navigation = useNavigation();
@@ -40,126 +49,54 @@ export default function Search() {
 
   if (city) {
     return (
-      <SafeAreaView style={styles.container}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.navigate("Home")}
-        >
+      <Container>
+        <BackButton onPress={() => navigation.navigate("Home")}>
           <Feather name="chevron-left" size={32} color="#000" />
           <Text style={{ fontSize: 22 }}>Voltar</Text>
-        </TouchableOpacity>
+        </BackButton>
 
-        <View style={styles.searchBox}>
-          <TextInput
+        <SearchBox>
+          <InputText
             value={input}
             onChangeText={setInput}
             placeholder="Ex: Fortaleza, CE"
-            style={styles.input}
           />
-          <TouchableOpacity style={styles.icon} onPress={handleSearch}>
+          <IconText onPress={handleSearch}>
             <Feather name="search" size={22} color="#FFF" />
-          </TouchableOpacity>
-        </View>
+          </IconText>
+        </SearchBox>
 
-        <LinearGradient style={styles.header} colors={["#1ed6ff", "#97c1ff"]}>
-          <Text style={styles.city}>{city.results.city}</Text>
-          <Text style={styles.date}>{city.results.date}</Text>
+        <Header colors={["#1ed6ff", "#97c1ff"]}>
+          <City>{city.results.city}</City>
+          <Date>{city.results.date}</Date>
           <View>
-            <Text style={styles.temp}>{city.results.temp}°</Text>
+            <Temp>{city.results.temp}°</Temp>
           </View>
 
           <Conditions weather={city} />
-        </LinearGradient>
-      </SafeAreaView>
+        </Header>
+      </Container>
     );
   }
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.navigate("Home")}
-      >
+    <Container>
+      <BackButton onPress={() => navigation.navigate("Home")}>
         <Feather name="chevron-left" size={32} color="#000" />
         <Text style={{ fontSize: 22 }}>Voltar</Text>
-      </TouchableOpacity>
+      </BackButton>
 
-      <View style={styles.searchBox}>
-        <TextInput
+      <SearchBox>
+        <InputText
           value={input}
           onChangeText={setInput}
           placeholder="Ex: Fortaleza, CE"
-          style={styles.input}
         />
-        <TouchableOpacity style={styles.icon} onPress={handleSearch}>
+        <IconText onPress={handleSearch}>
           <Feather name="search" size={22} color="#FFF" />
-        </TouchableOpacity>
-      </View>
+        </IconText>
+      </SearchBox>
 
       {error && <Text style={{ marginTop: 25, fontSize: 18 }}>{error}</Text>}
-    </SafeAreaView>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: "10%",
-    backgroundColor: "#e8f0ff",
-  },
-  backButton: {
-    flexDirection: "row",
-    marginLeft: 15,
-    alignSelf: "flex-start",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  searchBox: {
-    alignItems: "center",
-    flexDirection: "row",
-    backgroundColor: "#ddd",
-    width: "90%",
-    height: 60,
-    borderRadius: 10,
-  },
-  input: {
-    width: "85%",
-    height: 60,
-    backgroundColor: "#FFF",
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    padding: 7,
-  },
-  icon: {
-    width: "15%",
-    backgroundColor: "#1ed6ff",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 60,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-  },
-  header: {
-    marginTop: "5%",
-    width: "90%",
-    height: "65%",
-    paddingTop: "5%",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderRadius: 10,
-  },
-  city: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  date: {
-    color: "#fff",
-    fontSize: 20,
-  },
-  temp: {
-    color: "#fff",
-    fontSize: 90,
-    fontWeight: "bold",
-  },
-});

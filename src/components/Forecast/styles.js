@@ -21,6 +21,6 @@ export const Temp = styled.View`
 `;
 
 export const TempMax = styled.Text`
-  font-size: 18;
+  font-size: 18px;
   font-weight: bold;
 `;
