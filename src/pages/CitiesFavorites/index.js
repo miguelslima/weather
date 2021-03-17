@@ -1,15 +1,23 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
 import { condition } from "../../utils/condition";
 
-import { Container, BackButton } from "./styles";
+import {
+  Container,
+  BackButton,
+  Title,
+  CardContainer,
+  CityContainer,
+  CityContainerTop,
+} from "./styles";
 
 export default function CitiesFavorites() {
+  const navigation = useNavigation();
   const [cities, setCities] = useState([]);
-  let icon = condition(cities.condition_slug);
 
   useEffect(() => {
     const getData = async () => {
@@ -29,6 +37,8 @@ export default function CitiesFavorites() {
     getData();
   }, []);
 
+  console.log(cities);
+
   if (cities.length > 0) {
     return (
       <Container>
@@ -37,34 +47,36 @@ export default function CitiesFavorites() {
           <Text style={{ fontSize: 22 }}>Voltar</Text>
         </BackButton>
 
-        {cities.length > 0 &&
-          cities.map((city, index) => (
-            <View
-              key={index}
-              style={{
-                width: "50%",
-                backgroundColor: "#aaa",
-                margin: 20,
-                padding: 15,
-                borderRadius: 10,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginBottom: 30,
-                }}
-              >
-                <Text>{city.results.forecast[0].max} °</Text>
-                <Ionicons name={icon.name} color={icon.color} size={25} />
-              </View>
-              <Text>{city.results.city}</Text>
-            </View>
-          ))}
+        <Title>Cidade favoritadas</Title>
+
+        <CardContainer>
+          {cities.length > 0 &&
+            cities.map((city, index) => (
+              <CityContainer key={index}>
+                <CityContainerTop>
+                  <Text>{city.results.forecast[0].max} °</Text>
+                  <Ionicons
+                    name={condition(city.results.condition_slug).name}
+                    color={condition(city.results.condition_slug).color}
+                    size={25}
+                  />
+                </CityContainerTop>
+                <Text>{city.results.city}</Text>
+              </CityContainer>
+            ))}
+        </CardContainer>
       </Container>
     );
   } else {
-    return <View />;
+    return (
+      <Container>
+        <BackButton onPress={() => navigation.navigate("Home")}>
+          <Feather name="chevron-left" size={32} color="#000" />
+          <Text style={{ fontSize: 22 }}>Voltar</Text>
+        </BackButton>
+
+        <Title>Sem cidades favoritas</Title>
+      </Container>
+    );
   }
 }
