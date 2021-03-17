@@ -11,6 +11,7 @@ import Loading from "../../components/Loading";
 
 import { Container, List } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
   const navigation = useNavigation();
@@ -72,11 +73,10 @@ export default function Home() {
       <Menu />
       <Header background={background} weather={weather} icon={icon} />
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("NextDay")}
-        style={{ marginVertical: 10, fontSize: 18 }}
-      >
-        <Text>Veja previsão para os próximos 10 dias</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("NextDay")}>
+        <Text style={{ marginVertical: 10, fontSize: 16 }}>
+          Próximos 10 dias
+        </Text>
       </TouchableOpacity>
 
       <List

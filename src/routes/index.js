@@ -4,6 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
 import NextDay from "../pages/NextDay";
+import CitiesFavorites from "../pages/CitiesFavorites";
 
 const Drawer = createDrawerNavigator();
 
@@ -26,6 +27,11 @@ function Routes() {
         name="NextDay"
         component={NextDay}
         options={{ title: "Previsão próximos dias" }}
+      />
+      <Drawer.Screen
+        name="CitiesFavorites"
+        component={CitiesFavorites}
+        options={{ title: "Cidades Favoritas" }}
       />
     </Drawer.Navigator>
   );
