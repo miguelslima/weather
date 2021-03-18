@@ -25,14 +25,14 @@ function Routes() {
         options={{ title: "Procurar cidade" }}
       />
       <Drawer.Screen
-        name="NextDay"
-        component={NextDay}
-        options={{ title: "Previsão próximos dias" }}
-      />
-      <Drawer.Screen
         name="CitiesFavorites"
         component={CitiesFavorites}
         options={{ title: "Cidades Favoritas" }}
+      />
+      <Drawer.Screen
+        name="NextDay"
+        component={NextDay}
+        options={{ title: "" }}
       />
       <Drawer.Screen
         name="DetailsCityFavorite"

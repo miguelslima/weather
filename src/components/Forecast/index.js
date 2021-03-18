@@ -7,7 +7,8 @@ import { condition } from "../../utils/condition";
 import { Container, Date, Temp, TempMax, Weekday } from "./styles";
 
 export default function Forecast({ data, vertical }) {
-  // let icon = condition(data.condition);
+  let icon = condition(data.condition);
+
   return (
     <Container vertical={vertical}>
       <Weekday vertical={vertical}>{data.weekday}</Weekday>
@@ -22,11 +23,7 @@ export default function Forecast({ data, vertical }) {
           vertical={vertical}
           style={{ flexDirection: "row", alignItems: "center", width: 180 }}
         >
-          <Ionicons
-            name={condition(data.condition).name}
-            color={icon.color}
-            size={25}
-          />
+          <Ionicons name={icon.name} color={icon.color} size={25} />
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"
@@ -36,11 +33,7 @@ export default function Forecast({ data, vertical }) {
           </Text>
         </View>
       ) : (
-        <Ionicons
-          name={condition(data.condition).name}
-          color={icon.color}
-          size={25}
-        />
+        <Ionicons name={icon.name} color={icon.color} size={25} />
       )}
     </Container>
   );

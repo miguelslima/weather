@@ -7,8 +7,8 @@ export const Container = styled.View`
   border-radius: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: ${({ vertical }) => (vertical ? "20px" : "10px")};
-  padding-right: ${({ vertical }) => (vertical ? "20px" : "10px")};
+  padding-left: ${({ vertical }) => (vertical ? "20px" : "15px")};
+  padding-right: ${({ vertical }) => (vertical ? "30px" : "15px")};
   flex-direction: ${({ vertical }) => (vertical ? "row" : "column")};
   justify-content: ${({ vertical }) =>
     vertical ? "space-between" : "space-around"};

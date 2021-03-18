@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
 import { condition } from "../../utils/condition";
@@ -31,7 +31,7 @@ export default function CitiesFavorites() {
     };
 
     getData();
-  }, []);
+  }, [navigation]);
 
   if (cities.length > 0) {
     return (
@@ -81,6 +81,10 @@ export default function CitiesFavorites() {
         </BackButton>
 
         <Title>Sem cidades favoritas</Title>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+          <Text>Adicione aqui uma cidade favorita</Text>
+        </TouchableOpacity>
       </Container>
     );
   }

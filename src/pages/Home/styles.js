@@ -11,4 +11,5 @@ export const Container = styled(LinearGradient)`
 export const List = styled(FlatList)`
   margin-top: 10px;
   margin-right: 10px;
+  
 `;
