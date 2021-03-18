@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, Keyboard, TouchableOpacity, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons";
@@ -28,7 +28,9 @@ export default function Search() {
   const [error, setError] = useState(null);
 
   async function handleSearch() {
-    const response = await api.get(`/weather?key=${key}&city_name=${input}`);
+    const response = await api.get(
+      `/weather?array_limit=2&key=${key}&fields=temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
+    );
 
     if (response.data.by === "default") {
       setError("Cidade, não encontrada!");
@@ -38,24 +40,41 @@ export default function Search() {
       return;
     }
 
+    if (response.data.by === "city_name") {
+      setAddCity((addCity) => [...addCity, response.data]);
+    }
+
     setCity(response.data);
     setInput("");
+
     Keyboard.dismiss();
   }
 
-  function handleAddCity() {
-    const cityExistInArray = addCity.includes(city);
+  async function handleAddCity() {
+    try {
+      await AsyncStorage.setItem(
+        "@weater/FavoriteCity",
+        JSON.stringify(addCity)
+      );
 
-    if (cityExistInArray) {
-      Alert.alert("Cidade já adicionada");
-      return;
+      Alert.alert("Cidade adicionada");
+    } catch (e) {
+      console.log(e);
     }
-    setAddCity((addCity) => [...addCity, city]);
-
-    AsyncStorage.setItem("@weater/FavoriteCity", JSON.stringify(addCity));
-
-    Alert.alert("Cidade adicionada");
   }
+
+  // useEffect(() => {
+  //   const addStorage = async () => {
+  //     await AsyncStorage.setItem(
+  //       "@weater/FavoriteCity",
+  //       JSON.stringify(addCity)
+  //     );
+
+  //     Alert.alert("Cidade adicionada");
+  //     setCity(null);
+  //   };
+  //   addStorage();
+  // }, [addCity]);
 
   if (city) {
     return (
