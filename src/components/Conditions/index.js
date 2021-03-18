@@ -30,7 +30,7 @@ export default function Conditions({ background, weather }) {
       </BorderTop>
 
       <View style={{ width: "50%" }}>
-        <ConditionTop>
+        <ConditionTop> 
           <Feather name="droplet" size={27} color="#fff" />
           <ConditionText>{weather.results.humidity}</ConditionText>
         </ConditionTop>

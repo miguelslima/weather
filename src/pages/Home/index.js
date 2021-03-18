@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
+import { useNavigation } from "@react-navigation/native";
 
 import Forecast from "../../components/Forecast";
 import Header from "../../components/Header";
 import Menu from "../../components/Menu";
-
-import api, { key } from "../../services/api";
 import Loading from "../../components/Loading";
+import { Feather } from "@expo/vector-icons";
+import api, { key } from "../../services/api";
 
 import { Container, List } from "./styles";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
   const navigation = useNavigation();
@@ -62,21 +61,32 @@ export default function Home() {
 
   if (loading) {
     return (
-      <Container>
+      <Container colors={["rgba(255,255,255,0)", "rgba(255,255,255,0)"]}>
         <Loading />
       </Container>
     );
   }
 
   return (
-    <Container>
+    <Container colors={background}>
       <Menu />
+
       <Header background={background} weather={weather} icon={icon} />
 
-      <TouchableOpacity onPress={() => navigation.navigate("NextDay")}>
-        <Text style={{ marginVertical: 10, fontSize: 16 }}>
+      <TouchableOpacity
+        style={{
+          width: "90%",
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 10,
+          justifyContent: "flex-end",
+        }}
+        onPress={() => navigation.navigate("NextDay")}
+      >
+        <Text style={{ marginHorizontal: 5, fontSize: 16, color: "#fff" }}>
           Próximos 10 dias
         </Text>
+        <Feather name="arrow-right" size={20} color="#fff" />
       </TouchableOpacity>
 
       <List

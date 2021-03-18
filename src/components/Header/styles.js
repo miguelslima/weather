@@ -1,7 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView } from "react-native";
 import styled from "styled-components/native";
 
-export const Container = styled(LinearGradient)`
+export const Container = styled(SafeAreaView)`
   width: 90%;
   flex-direction: column;
   align-items: center;
@@ -29,7 +30,7 @@ export const City = styled.Text`
 
 export const Temp = styled.Text`
   color: #fff;
-  font-size: 80px;
+  font-size: 70px;
   font-weight: bold;
   margin-bottom: 5px;
 `;

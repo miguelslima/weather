@@ -1,11 +1,11 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { FlatList, SafeAreaView } from "react-native";
 import styled from "styled-components/native";
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled(LinearGradient)`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #e8f0ff;
 `;
 
 export const List = styled(FlatList)`

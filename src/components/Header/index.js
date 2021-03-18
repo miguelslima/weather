@@ -9,7 +9,7 @@ export default function Header({ background, weather, icon }) {
   return (
     <>
       <City> {weather.results.city}</City>
-      <Container colors={background}>
+      <Container>
         <Ionicons name={icon.name} color={icon.color} size={120} />
         <Description>{weather.results.description}</Description>
         <Date> {weather.results.date}</Date>
