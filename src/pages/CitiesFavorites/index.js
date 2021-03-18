@@ -22,12 +22,8 @@ export default function CitiesFavorites() {
   useEffect(() => {
     const getData = async () => {
       try {
-        await AsyncStorage.getItem("@weater/FavoriteCity").then(
-          (value) =>
-            //AsyncStorage returns a promise so adding a callback to get the value
-            setCities(JSON.parse(value))
-
-          //Setting the value in Text
+        await AsyncStorage.getItem("@weater/FavoriteCity").then((value) =>
+          setCities(JSON.parse(value))
         );
       } catch (e) {
         console.log(e);
@@ -36,8 +32,6 @@ export default function CitiesFavorites() {
 
     getData();
   }, []);
-
-  console.log(cities);
 
   if (cities.length > 0) {
     return (
@@ -52,16 +46,27 @@ export default function CitiesFavorites() {
         <CardContainer>
           {cities.length > 0 &&
             cities.map((city, index) => (
-              <CityContainer key={index}>
+              <CityContainer
+                key={index}
+                onPress={() =>
+                  navigation.navigate("DetailsCityFavorite", {
+                    cityName: city.results.city,
+                  })
+                }
+              >
                 <CityContainerTop>
-                  <Text>{city.results.forecast[0].max} °</Text>
+                  <Text style={{ fontSize: 16, color: "#fff" }}>
+                    {city.results.forecast[0].max} °
+                  </Text>
                   <Ionicons
                     name={condition(city.results.condition_slug).name}
                     color={condition(city.results.condition_slug).color}
                     size={25}
                   />
                 </CityContainerTop>
-                <Text>{city.results.city}</Text>
+                <Text style={{ fontSize: 18, color: "#fff" }}>
+                  {city.results.city}
+                </Text>
               </CityContainer>
             ))}
         </CardContainer>

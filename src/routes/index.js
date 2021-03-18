@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Search from "../pages/Search";
 import NextDay from "../pages/NextDay";
 import CitiesFavorites from "../pages/CitiesFavorites";
+import DetailsCityFavorite from "../pages/DetailsCityFavorite";
 
 const Drawer = createDrawerNavigator();
 
@@ -32,6 +33,11 @@ function Routes() {
         name="CitiesFavorites"
         component={CitiesFavorites}
         options={{ title: "Cidades Favoritas" }}
+      />
+      <Drawer.Screen
+        name="DetailsCityFavorite"
+        component={DetailsCityFavorite}
+        options={{ title: "" }}
       />
     </Drawer.Navigator>
   );

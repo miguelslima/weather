@@ -63,19 +63,6 @@ export default function Search() {
     }
   }
 
-  // useEffect(() => {
-  //   const addStorage = async () => {
-  //     await AsyncStorage.setItem(
-  //       "@weater/FavoriteCity",
-  //       JSON.stringify(addCity)
-  //     );
-
-  //     Alert.alert("Cidade adicionada");
-  //     setCity(null);
-  //   };
-  //   addStorage();
-  // }, [addCity]);
-
   if (city) {
     return (
       <Container>

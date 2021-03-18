@@ -16,7 +16,7 @@ export const BackButton = styled(TouchableOpacity)`
 `;
 
 export const Title = styled.Text`
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
   font-weight: bold;
   margin-bottom: 10px;
@@ -28,13 +28,13 @@ export const CardContainer = styled.View`
   flex-wrap: wrap;
 `;
 
-export const CityContainer = styled.View`
-  margin: 10px;
+export const CityContainer = styled.TouchableOpacity`
+  margin: 12px;
   padding: 10px;
-  background-color: transparent;
+  background-color: #054f77;
   border-radius: 10px;
 
-  border: 1px solid #aaa;
+  border: 1px solid #97aaff;
 `;
 
 export const CityContainerTop = styled.View`
