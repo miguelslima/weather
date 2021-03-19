@@ -27,11 +27,12 @@ export default function Search() {
   const [addCity, setAddCity] = useState([]);
   const [error, setError] = useState(null);
   const [favorite, setFavorite] = useState(false);
+  const [background, setBackground] = useState(["#1ed6ff", "#97c1ff"]);
 
   async function handleSearch() {
     setFavorite(false);
     const response = await api.get(
-      `/weather?array_limit=2&key=${key}&fields=img_id,temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
+      `/weather?array_limit=2&key=${key}&fields=currently,temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
     );
 
     if (response.data.by === "default") {
@@ -45,6 +46,13 @@ export default function Search() {
 
     if (response.data.by === "city_name") {
       setAddCity((addCity) => [...addCity, response.data]);
+    }
+
+    if (response.data.results.currently === "noite") {
+      setBackground(["#0c3741", "#0f2f61"]);
+    }
+    if (response.data.results.currently === "dia") {
+      setBackground(["#d1ab48", "#d6d2a5"]);
     }
 
     setCity(response.data);
@@ -62,8 +70,10 @@ export default function Search() {
       if (favorite === true) {
         setFavorite(true);
         Alert.alert("Cidade já adicionada");
+        setCity(null);
       } else {
         Alert.alert("Cidade adicionada");
+        setCity(null);
       }
     } catch (e) {
       console.log(e);
@@ -89,7 +99,7 @@ export default function Search() {
           </IconText>
         </SearchBox>
 
-        <Header colors={["#1ed6ff", "#97c1ff"]}>
+        <Header colors={background}>
           <View
             style={{
               flexDirection: "row",

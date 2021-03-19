@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 export const Container = styled(SafeAreaView)`
   flex: 1;
 
-  background-color: #e8f0ff;
+  background-color: #d6d2a5;
 `;
 
 export const BackButton = styled(TouchableOpacity)`
@@ -20,6 +20,7 @@ export const Title = styled.Text`
   text-align: center;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #000;
 `;
 
 export const CardContainer = styled.View`
@@ -31,10 +32,10 @@ export const CardContainer = styled.View`
 export const CityContainer = styled.TouchableOpacity`
   margin: 12px;
   padding: 10px;
-  background-color: #054f77;
+  background-color: #615031;
   border-radius: 10px;
 
-  border: 1px solid #97aaff;
+  border: 1px solid #d1ab48;
 `;
 
 export const CityContainerTop = styled.View`

@@ -118,9 +118,18 @@ export default function CitiesFavorites() {
 
         <Title>Sem cidades favoritas</Title>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-          <Text>Adicione aqui uma cidade favorita</Text>
-        </TouchableOpacity>
+        <View style={{ flex: 1, justifyContent: "center" }}>
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+            <Text
+              style={{
+                fontSize: 18,
+                textAlign: "center",
+              }}
+            >
+              Adicione aqui uma cidade favorita
+            </Text>
+          </TouchableOpacity>
+        </View>
       </Container>
     );
   }

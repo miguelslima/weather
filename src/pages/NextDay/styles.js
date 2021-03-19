@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: #e8f0ff;
+  background-color: #d6d2a5;
 `;
 
 export const List = styled(FlatList)`

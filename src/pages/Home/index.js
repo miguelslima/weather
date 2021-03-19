@@ -34,13 +34,15 @@ export default function Home() {
       let location = await Location.getCurrentPositionAsync({});
 
       const response = await api.get(
-        `/weather?array_limit=5&key=${key}&fields=temp,date,time,condition,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+        `/weather?array_limit=5&key=${key}&fields=temp,currently,date,time,condition,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
       );
-
       setWeather(response.data);
 
       if (response.data.results.currently === "noite") {
         setBackground(["#0c3741", "#0f2f61"]);
+      }
+      if (response.data.results.currently === "dia") {
+        setBackground(["#d6d2a5", "#d1ab48"]);
       }
 
       switch (response.data.results.condition_slug) {

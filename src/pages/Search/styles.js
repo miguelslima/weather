@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 export const Container = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
-  background-color: #e8f0ff;
+  background-color: #d6d2a5;
 `;
 
 export const BackButton = styled(TouchableOpacity)`
@@ -36,7 +36,7 @@ export const InputText = styled.TextInput`
 
 export const IconText = styled(TouchableOpacity)`
   width: 15%;
-  background-color: #1ed6ff;
+  background-color: #d1ab48;
   align-items: center;
   justify-content: center;
   height: 60px;
