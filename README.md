@@ -1,4 +1,6 @@
 <p align="center">
+  <h1>App Tempo</h1>
+
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/miguelslima/weather?color=%2304D361">
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -25,13 +27,13 @@ Nesse projeto temos a possibilidade de pesquisar uma cidade, mostrando sua previ
 <br>
 
 <h3 align="center">
-    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot1">
+    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot1.png">
     <br><br>
-    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot2">
+    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot2.png">
     <br><br>
-    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot3">
+    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot3.png">
     <br><br>
-    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot4">
+    <img alt="Logo" title="#logo" width="400px" src="./assets/Screenshot4.png">
     <br><br>
 </h3>
 
