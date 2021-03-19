@@ -21,13 +21,18 @@ export default function Forecast({ data, vertical }) {
       {vertical ? (
         <View
           vertical={vertical}
-          style={{ flexDirection: "row", alignItems: "center", width: 180 }}
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            width: 140,
+            justifyContent: "space-between",
+          }}
         >
           <Ionicons name={icon.name} color={icon.color} size={25} />
           <Text
-            numberOfLines={1}
+            numberOfLines={2}
             ellipsizeMode="tail"
-            style={{ marginLeft: 10, fontSize: 12 }}
+            style={{ marginLeft: 10, fontSize: 14, textAlign: "center" }}
           >
             {data.description}
           </Text>

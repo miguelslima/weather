@@ -74,7 +74,7 @@ export default function NextDay() {
       </BackButton>
 
       <Text style={{ textAlign: "center", marginTop: 20, fontSize: 18 }}>
-        Veja previsão para os próximos 10 dias {weather.results.city}
+        {weather.results.city}
       </Text>
 
       <List

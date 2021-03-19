@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Keyboard, TouchableOpacity, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Conditions from "../../components/Conditions";
 
@@ -26,10 +26,11 @@ export default function Search() {
   const [city, setCity] = useState(null);
   const [addCity, setAddCity] = useState([]);
   const [error, setError] = useState(null);
+  const [favorite, setFavorite] = useState(false);
 
   async function handleSearch() {
     const response = await api.get(
-      `/weather?array_limit=2&key=${key}&fields=temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
+      `/weather?array_limit=2&key=${key}&fields=img_id,temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
     );
 
     if (response.data.by === "default") {
@@ -46,18 +47,23 @@ export default function Search() {
 
     setCity(response.data);
     setInput("");
-
     Keyboard.dismiss();
   }
 
   async function handleAddCity() {
     try {
-      await AsyncStorage.setItem(
-        "@weater/FavoriteCity",
-        JSON.stringify(addCity)
-      );
-
-      Alert.alert("Cidade adicionada");
+      if (addCity.includes(city)) {
+        Alert.alert("Cidade já adicionada");
+        setFavorite(true);
+        return;
+      } else {
+        await AsyncStorage.setItem(
+          "@weater/FavoriteCity",
+          JSON.stringify(addCity)
+        );
+        setFavorite(true);
+        Alert.alert("Cidade adicionada");
+      }
     } catch (e) {
       console.log(e);
     }
@@ -87,15 +93,20 @@ export default function Search() {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
             }}
           >
             <City>{city.results.city}</City>
             <TouchableOpacity onPress={() => handleAddCity()}>
-              <Feather name="plus" size={20} color="#FFF" />
+              {favorite === true ? (
+                <MaterialIcons name="star-border" size={30} color="#FFF" />
+              ) : (
+                <MaterialIcons name="star" size={30} color="#FFF" />
+              )}
             </TouchableOpacity>
           </View>
           <Date>{city.results.date}</Date>
+
           <View>
             <Temp>{city.results.temp}°</Temp>
           </View>

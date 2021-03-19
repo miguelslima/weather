@@ -58,6 +58,7 @@ export const City = styled.Text`
   font-size: 30px;
   font-weight: bold;
   color: #fff;
+  margin-right: 30px;
 `;
 
 export const Date = styled.Text`

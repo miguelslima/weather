@@ -22,16 +22,21 @@ export default function CitiesFavorites() {
   useEffect(() => {
     const getData = async () => {
       try {
-        await AsyncStorage.getItem("@weater/FavoriteCity").then((value) =>
-          setCities(JSON.parse(value))
-        );
+        await AsyncStorage.getItem("@weater/FavoriteCity").then((value) => {
+          if (value === null) {
+            return;
+          } 
+          setCities(JSON.parse(value));
+        });
       } catch (e) {
         console.log(e);
       }
     };
 
     getData();
-  }, [navigation]);
+  }, [navigation, cities]);
+
+  console.log(cities);
 
   if (cities.length > 0) {
     return (
