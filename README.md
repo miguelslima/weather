@@ -1,6 +1,6 @@
-<p align="center">
-  <h1>App Tempo</h1>
+<h1 align="center">App Tempo</h1>
 
+<p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/miguelslima/weather?color=%2304D361">
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -10,6 +10,7 @@
 # Índice
 
 - [Sobre](#sobre)
+- [Imagens](#imagens)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Como Usar](#como-usar)
 
@@ -22,7 +23,7 @@ Na página inicial será necessário informar sua localização para que possa f
 <br><br>
 Nesse projeto temos a possibilidade de pesquisar uma cidade, mostrando sua previsão de tempo atual. Há possibilidade em colocar algumas cidades como favoritas. No campo de cidades favoritdas, há possibilidade em verificar a previsão para os próximos 10 dias ou excluir das cidade favoritas. O armazenamento foi feito utilizando asyncstorage.
 
-<h3>Imagens</h3>
+<h3 id="imagens">Imagens</h3>
 
 <br>
 
