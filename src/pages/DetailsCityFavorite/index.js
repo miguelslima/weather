@@ -64,8 +64,18 @@ export default function DetailsCityFavorite({ route }) {
         <Text style={{ fontSize: 22 }}>Voltar</Text>
       </BackButton>
 
-      <Text style={{ textAlign: "center", marginTop: 20, fontSize: 18 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          marginTop: 10,
+          fontSize: 18,
+          fontWeight: "bold",
+        }}
+      >
         {weather.results.city}
+      </Text>
+      <Text style={{ textAlign: "center", marginTop: 5, fontSize: 15 }}>
+        Previsão para 10 dias
       </Text>
 
       <List

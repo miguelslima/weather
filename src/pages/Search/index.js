@@ -29,6 +29,7 @@ export default function Search() {
   const [favorite, setFavorite] = useState(false);
 
   async function handleSearch() {
+    setFavorite(false);
     const response = await api.get(
       `/weather?array_limit=2&key=${key}&fields=img_id,temp,date,time,condition_code,description,city,humidity,wind_speedy,sunrise,sunset,condition_slug,city_name,forecast,max,min,date,weekday&city_name=${input}`
     );
@@ -37,6 +38,7 @@ export default function Search() {
       setError("Cidade, não encontrada!");
       setInput("");
       setCity(null);
+      setFavorite(false);
       Keyboard.dismiss();
       return;
     }
@@ -52,16 +54,15 @@ export default function Search() {
 
   async function handleAddCity() {
     try {
-      if (addCity.includes(city)) {
+      await AsyncStorage.setItem(
+        "@weater/FavoriteCity",
+        JSON.stringify(addCity)
+      );
+      setFavorite(!favorite);
+      if (favorite === true) {
+        setFavorite(true);
         Alert.alert("Cidade já adicionada");
-        setFavorite(true);
-        return;
       } else {
-        await AsyncStorage.setItem(
-          "@weater/FavoriteCity",
-          JSON.stringify(addCity)
-        );
-        setFavorite(true);
         Alert.alert("Cidade adicionada");
       }
     } catch (e) {
@@ -99,9 +100,9 @@ export default function Search() {
             <City>{city.results.city}</City>
             <TouchableOpacity onPress={() => handleAddCity()}>
               {favorite === true ? (
-                <MaterialIcons name="star-border" size={30} color="#FFF" />
-              ) : (
                 <MaterialIcons name="star" size={30} color="#FFF" />
+              ) : (
+                <MaterialIcons name="star-border" size={30} color="#FFF" />
               )}
             </TouchableOpacity>
           </View>
