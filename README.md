@@ -44,7 +44,7 @@ Nesse projeto temos a possibilidade de pesquisar uma cidade, mostrando sua previ
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias
 
-- [React](https://reactjs.org/) <br>
+- [React Native](https://reactnative.dev/) <br>
   Foram utilizado aqui:
 
   - @react-native-async-storage/async-storage
